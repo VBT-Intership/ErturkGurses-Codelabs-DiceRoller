@@ -3,8 +3,8 @@ package com.example.dicerollerapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,9 +12,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val rollButton: Button = findViewById(R.id.roll_button)
-        val resultText: TextView = findViewById(R.id.result_text)
+        val diceImage: ImageView = findViewById(R.id.dice_image)
 
-        rollButton.setOnClickListener { resultText.text = (1..6).random().toString()
+        rollButton.setOnClickListener {
+            val drawableResource = when ((1..6).random()) {
+                1 -> R.drawable.dice_1
+                2 -> R.drawable.dice_2
+                3 -> R.drawable.dice_3
+                4 -> R.drawable.dice_4
+                5 -> R.drawable.dice_5
+                else -> R.drawable.dice_6
+            }
+            diceImage.setImageResource(drawableResource)
+
         }
     }
 
